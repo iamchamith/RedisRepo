@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RedisRepo;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,9 +15,9 @@ namespace Redis.Models
             new Employee(4,"Chamara",45000),
             new Employee(5,"Nihal",85000)
         };
-        private readonly CacheContext<Employee> _cache;
+        private readonly RedisContext<Employee> _cache;
 
-        public EmployeeRespository(CacheContext<Employee> cache)
+        public EmployeeRespository(RedisContext<Employee> cache)
         {
             _cache = cache.SetDatabase(nameof(Employee));
         }

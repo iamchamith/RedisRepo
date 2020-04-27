@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Redis.Models;
+using RedisRepo;
 using StackExchange.Redis;
 
 namespace Redis
@@ -19,11 +20,11 @@ namespace Redis
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<EmployeeRespository, EmployeeRespository>();
-            services.AddTransient<CacheContext<Employee>, CacheContext<Employee>>();
+            services.AddTransient<RedisContext<Employee>, RedisContext<Employee>>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("127.0.0.1:6379"));
+            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("127.0.0.1:6379,allowAdmin=true"));
         }
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IConnectionMultiplexer connectionMultiplexer)
         {
             if (env.IsDevelopment())
             {
@@ -33,6 +34,7 @@ namespace Redis
             {
                 app.UseHsts();
             }
+            connectionMultiplexer.GetServer("127.0.0.1:6379").FlushAllDatabases();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

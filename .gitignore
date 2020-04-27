@@ -1,3 +1,5 @@
 /.vs
-/Redis/obj
-/Redis/bin
+/RedisRepoExample/obj
+/RedisRepoExample/bin
+/RedisRepo/obj
+/RedisRepo/bin

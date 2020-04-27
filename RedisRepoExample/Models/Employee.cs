@@ -1,4 +1,6 @@
-﻿namespace Redis.Models
+﻿using RedisRepo;
+
+namespace Redis.Models
 {
     public class Employee: BaseEntity<int>
     {

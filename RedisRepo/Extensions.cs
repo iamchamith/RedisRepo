@@ -3,7 +3,7 @@ using StackExchange.Redis;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Redis.Models
+namespace RedisRepo
 {
     public static class Extensions
     {

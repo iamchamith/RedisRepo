@@ -1,4 +1,4 @@
-﻿namespace Redis.Models
+﻿namespace RedisRepo
 {
     public class BaseEntity<T>
     {
